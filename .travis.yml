@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.6.0
+rvm: 2.6.6
 cache:
   bundler: true
   directories:
@@ -8,14 +8,6 @@ cache:
   yarn: true
 before_install:
   - mysql -e 'CREATE DATABASE ho_tell_test;'
-# install:
-#   - travis_retry nvm install 11.7.0
-#   - node -v
-#   - travis_retry npm i -g yarn
-#   - bundle install
-#   - travis_retry yarn
-#   - bundle
-#   - yarn
 script:
   - bundle exec rails db:migrate
   - bundle exec rake db:reset
