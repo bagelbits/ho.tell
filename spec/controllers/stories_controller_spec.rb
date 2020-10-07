@@ -27,7 +27,7 @@ RSpec.describe StoriesController, type: :controller do
       allow(Story).to receive(:find).and_return(story)
       allow_any_instance_of(Story).to receive(:report!)
 
-      expect(Story).to receive(:report!)
+      expect(story).to receive(:report!)
       post :report, params: { id: 2 }
 
       expect(response.code).to eq('200')
