@@ -21,6 +21,33 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
+  describe '#random' do
+    let(:story) { build(:story) }
+
+    it 'gets a random story' do
+      allow(Story).to receive(:random).and_return(story)
+
+      expect(Story).to receive(:random)
+      get :random
+
+      expect(response.code).to eq('200')
+      expect(JSON.parse(response.body)['id']).to eq(story.id)
+    end
+
+    context 'with ignoredIds param' do
+      let(:ignored_ids) { %w[1 2 3] }
+      it 'uses ignored ids' do
+        allow(Story).to receive(:random).and_return(story)
+        expect(Story).to receive(:random).with(ignored_ids)
+
+        get :random, params: { ignored_ids: ignored_ids }
+
+        expect(response.code).to eq('200')
+        expect(JSON.parse(response.body)['id']).to eq(story.id)
+      end
+    end
+  end
+
   describe '#report' do
     let(:story) { build(:story) }
     it 'marks story as reported' do

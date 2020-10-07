@@ -2,6 +2,10 @@
 
 Rails.application.routes.draw do
   resources :stories do
+    collection do
+      get 'random'
+    end
+
     member do
       post 'report'
     end

@@ -9,6 +9,12 @@ class StoriesController < ApplicationController
     render json: story
   end
 
+  def random
+    random_story = Story.random(params[:ignored_ids])
+
+    render json: random_story
+  end
+
   def report
     story = Story.find(params[:id])
     story.report!

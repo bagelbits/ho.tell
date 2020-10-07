@@ -21,6 +21,14 @@ RSpec.describe Story, type: :model do
 
         expect(random_story.id).to eq(story2.id)
       end
+
+      context 'with string ids' do
+        it 'still works' do
+          random_story = Story.random([story1.id.to_s, story3.id.to_s])
+
+          expect(random_story.id).to eq(story2.id)
+        end
+      end
     end
   end
 
