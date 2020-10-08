@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import TextareaAutosize from "react-autosize-textarea";
 import RandomStory from "./RandomStory";
 
 function StoryPrompt() {
@@ -49,11 +50,11 @@ function StoryPrompt() {
     <div>
       {submitted === "false" ? (
         <div>
-          <textarea
+          <TextareaAutosize
             className="form-control"
             ref={inputEl}
             placeholder="Tell me a saucy story! ;)"
-            rows="5"
+            rows={5}
           />
 
           <div className="prompt-buttons">
