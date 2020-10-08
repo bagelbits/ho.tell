@@ -35,10 +35,10 @@ RSpec.describe StoriesController, type: :controller do
     end
 
     context 'with ignoredIds param' do
-      let(:ignored_ids) { %w[1 2 3] }
+      let(:ignored_ids) { '1,2,3' }
       it 'uses ignored ids' do
         allow(Story).to receive(:random).and_return(story)
-        expect(Story).to receive(:random).with(ignored_ids)
+        expect(Story).to receive(:random).with(ignored_ids.split(','))
 
         get :random, params: { ignored_ids: ignored_ids }
 
