@@ -10,7 +10,8 @@ class StoriesController < ApplicationController
   end
 
   def random
-    random_story = Story.random(params[:ignored_ids])
+    ignored_ids = params[:ignored_ids] || ''
+    random_story = Story.random(ignored_ids.split(','))
 
     render json: random_story
   end

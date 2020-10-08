@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import ReportModal from "./ReportModal";
+import RandomStory from "./RandomStory";
 
 function StoryPrompt() {
   const [submitted, setSubmitted] = React.useState("false");
+  const [storyId, setStoryId] = React.useState(null);
 
   const submitEl = React.useRef(null);
-  // const reportEl = React.useRef(null);
   const inputEl = React.useRef(null);
 
   const submitClicked = () => {
@@ -34,11 +34,12 @@ function StoryPrompt() {
           },
           body: JSON.stringify(body),
         });
+        const json = await response.json();
+        setStoryId(json.id);
+        setSubmitted(true);
       } catch (error) {
         setSubmitted("null");
       }
-
-      setSubmitted(true);
     }
 
     postStory();
@@ -66,8 +67,12 @@ function StoryPrompt() {
             </Button>
           </div>
         </div>
+      ) : submitted === "null" ? (
+        <p>Something went terribly wrong.</p>
       ) : (
-        <div>Submitted!</div>
+        <div>
+          <RandomStory storyId={storyId} />
+        </div>
       )}
     </div>
   );
