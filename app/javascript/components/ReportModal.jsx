@@ -1,7 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import PropTypes, { func } from "prop-types";
 
 function ReportModal(props) {
   return (
@@ -11,7 +10,7 @@ function ReportModal(props) {
       </Modal.Header>
 
       <Modal.Body>
-        <p>Reporting a prompt will remove it for everyone.</p>
+        <p>Reporting a story will remove it for everyone.</p>
 
         <p>
           Please only do this if the prompt is racist, sexist, or otherwise
@@ -23,7 +22,7 @@ function ReportModal(props) {
         <Button
           variant="danger"
           onClick={() => {
-            props.onReport(props.storyID);
+            props.onReport(props.storyId);
           }}
         >
           Report
