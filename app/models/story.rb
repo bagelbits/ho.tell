@@ -8,11 +8,19 @@ class Story < ApplicationRecord
                 else
                   all
                 end
-      results.order(Arel.sql('RAND()')).first
+      results.where(reported: false, reviewed: true).order(Arel.sql('RAND()')).first
     end
   end
 
   validates :story, presence: true
+
+  scope :reported, -> { where(reported: true) }
+  scope :to_review, -> { where(reviewed: false) }
+
+  def review!
+    self.reviewed = true
+    save!
+  end
 
   def report!
     self.reported = true
