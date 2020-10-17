@@ -1,5 +1,4 @@
 language: ruby
-node_js: 12.19
 rvm: 2.6.6
 cache:
   bundler: true
@@ -8,6 +7,7 @@ cache:
   yarn: true
 before_install:
   - mysql -e 'CREATE DATABASE ho_tell_test;'
+  - nvm install 12.19
 script:
   - bundle exec rails db:migrate
   - bundle exec rake db:reset
