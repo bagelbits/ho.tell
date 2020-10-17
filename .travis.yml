@@ -9,6 +9,7 @@ before_install:
   - mysql -e 'CREATE DATABASE ho_tell_test;'
   - nvm install 12.19
 script:
+  - yarn
   - bundle exec rails db:migrate
   - bundle exec rake db:reset
   - bundle exec rails webpacker:compile
