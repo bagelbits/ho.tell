@@ -1,10 +1,10 @@
 language: ruby
 rvm: 2.6.6
-cache:
-  bundler: true
-  directories:
-    - node_modules # NPM packages
-  yarn: true
+# cache:
+#   bundler: true
+#   directories:
+#     - node_modules # NPM packages
+#   yarn: true
 before_install:
   - mysql -e 'CREATE DATABASE ho_tell_test;'
 script:
