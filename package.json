@@ -1,5 +1,8 @@
 {
   "name": "ho_tell",
+  "engines": {
+    "node": ">=12.19"
+  },
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
