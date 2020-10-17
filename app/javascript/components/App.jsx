@@ -1,7 +1,7 @@
 import React from "react";
-import StoryPrompt from "./app/StoryPrompt";
+import StoryPrompt from "./StoryPrompt";
 
-function Index() {
+function App() {
   return (
     <div>
       <h1 className="title">Welcome to Ho.tell</h1>
@@ -16,5 +16,5 @@ function Index() {
   );
 }
 
-Index.propTypes = {};
-export default Index;
+App.propTypes = {};
+export default App;
