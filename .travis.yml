@@ -10,6 +10,7 @@ before_install:
 script:
   - bundle exec rails db:migrate
   - bundle exec rake db:reset
+  - bundle exec rails webpacker:compile
   - bundle exec rspec
 services:
   - mysql
