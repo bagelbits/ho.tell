@@ -1,5 +1,5 @@
 import React from "react";
-import StoryPrompt from "./StoryPrompt";
+import StoryPrompt from "./app/StoryPrompt";
 
 function Index() {
   return (

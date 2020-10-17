@@ -3,6 +3,6 @@
 class AdminController < ApplicationController
   # TODO: Will have to setup login
   def index
-    render component: 'admin/Index'
+    render component: 'Admin'
   end
 end
