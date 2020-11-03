@@ -1,20 +1,20 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import ReportModal from "./ReportModal";
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import ReportModal from './ReportModal';
 
 const MAX_REPORTS = 2;
 
 function getRandomStory(reports, storyId) {
   const [result, setResult] = React.useState({});
-  const [loading, setLoading] = React.useState("false");
+  const [loading, setLoading] = React.useState('false');
 
   React.useEffect(() => {
     async function fetchPrompt() {
       if (reports >= MAX_REPORTS) {
         setResult({
-          story: "Thank you for playing!",
+          story: 'Thank you for playing!',
         });
-        setLoading("true");
+        setLoading('true');
         return;
       }
 
@@ -22,10 +22,10 @@ function getRandomStory(reports, storyId) {
         const response = await fetch(`/stories/random?ignored_ids=${storyId}`);
         const json = await response.json();
         setResult(json);
-        setLoading("true");
+        setLoading('true');
       } catch (error) {
         console.log(error);
-        setLoading("null");
+        setLoading('null');
       }
     }
 
@@ -42,6 +42,13 @@ function RandomStory(props) {
 
   const reportEl = React.useRef(null);
 
+  const openReportModal = () => {
+    setReportModalOpen(true);
+  };
+  const closeReportModal = () => {
+    setReportModalOpen(false);
+  };
+
   const reportStory = (storyId) => {
     async function submitStoryReport() {
       if (reports >= MAX_REPORTS) {
@@ -51,15 +58,13 @@ function RandomStory(props) {
       }
 
       try {
-        const csrf = document
-          .querySelector("meta[name='csrf-token']")
-          .getAttribute("content");
+        const csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
         const response = await fetch(`/stories/${storyId}/report`, {
-          method: "post",
+          method: 'post',
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-CSRF-Token": csrf,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'X-CSRF-Token': csrf,
           },
         });
         const json = await response.json();
@@ -77,46 +82,35 @@ function RandomStory(props) {
     submitStoryReport();
   };
 
-  const openReportModal = () => {
-    setReportModalOpen(true);
-  };
-  const closeReportModal = () => {
-    setReportModalOpen(false);
-  };
+  let renderedComponent;
+  if (loading === 'false') {
+    renderedComponent = <p>Loading...</p>;
+  } else if (loading === 'null') {
+    renderedComponent = <p>Something went terribly wrong.</p>;
+  } else {
+    renderedComponent = (
+      <div>
+        <p className="story">{result.story}</p>
 
-  return (
-    <div>
-      {loading === "false" ? (
-        <p>Loading...</p>
-      ) : loading === "null" ? (
-        <p>Something went terribly wrong.</p>
-      ) : (
-        <div>
-          <p className="story"> {result.story} </p>
-
-          <div className="prompt-buttons">
-            {reports < MAX_REPORTS && (
-              <Button
-                variant="danger"
-                id="prompt_report"
-                ref={reportEl}
-                onClick={openReportModal}
-              >
-                Report!
-              </Button>
-            )}
-          </div>
-
-          <ReportModal
-            open={reportModalOpen}
-            onClose={closeReportModal}
-            onReport={reportStory}
-            storyId={result.id}
-          />
+        <div className="prompt-buttons">
+          {reports < MAX_REPORTS && (
+            <Button variant="danger" id="prompt_report" ref={reportEl} onClick={openReportModal}>
+              Report!
+            </Button>
+          )}
         </div>
-      )}
-    </div>
-  );
+
+        <ReportModal
+          open={reportModalOpen}
+          onClose={closeReportModal}
+          onReport={reportStory}
+          storyId={result.id}
+        />
+      </div>
+    );
+  }
+
+  return renderedComponent;
 }
 
 export default RandomStory;
