@@ -11,7 +11,7 @@ RSpec.describe Story, type: :model do
     let!(:story_ids) { stories.map(&:id) }
 
     it 'selects a random story' do
-      stories.map(&:review!)
+      stories.map(&:approve!)
       random_story = Story.random
 
       expect(story_ids).to include(random_story.id)
@@ -19,7 +19,7 @@ RSpec.describe Story, type: :model do
 
     context 'with ignored_ids' do
       before do
-        stories.map(&:review!)
+        stories.map(&:approve!)
       end
 
       it 'selects a random story' do
@@ -40,7 +40,7 @@ RSpec.describe Story, type: :model do
 
     context 'with reported stories' do
       before do
-        stories.map(&:review!)
+        stories.map(&:approve!)
       end
 
       it 'will not show them' do
@@ -54,9 +54,9 @@ RSpec.describe Story, type: :model do
       end
     end
 
-    context 'with non-reviewed stories' do
+    context 'with stories to review' do
       it 'will not show them' do
-        story2.review!
+        story2.approve!
 
         5.times do
           random_story = Story.random
@@ -90,20 +90,20 @@ RSpec.describe Story, type: :model do
     let(:stories_to_review) { [story1, story3] }
 
     it 'shows reported stories' do
-      stories_to_review.map(&:review!)
+      stories_to_review.map(&:approve!)
 
       expect(Story.to_review).to eq([story2])
     end
   end
 
-  describe '#review' do
-    it 'marks story as reviewed' do
+  describe '#approve' do
+    it 'marks story as approved' do
       story = Story.create(story: 'This is a saucy story')
-      expect(story.reviewed).to eq(false)
+      expect(story.approved).to eq(false)
 
-      story.review!
+      story.approve!
       story = Story.find(story.id)
-      expect(story.reviewed).to eq(true)
+      expect(story.approved).to eq(true)
     end
   end
 

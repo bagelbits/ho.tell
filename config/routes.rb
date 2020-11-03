@@ -7,13 +7,13 @@ Rails.application.routes.draw do
     collection do
       get 'random'
       get 'to_review'
-      get 'reviewed'
+      get 'approved'
       get 'reported'
     end
 
     member do
       post 'report'
-      post 'review'
+      post 'approve'
     end
   end
 

@@ -58,11 +58,11 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe '#reviewed' do
-    it 'calls Story.reviewed' do
-      allow(Story).to  receive(:reviewed).and_return({})
-      expect(Story).to receive(:reviewed)
-      get :reviewed
+  describe '#approved' do
+    it 'calls Story.approved' do
+      allow(Story).to  receive(:approved).and_return({})
+      expect(Story).to receive(:approved)
+      get :approved
 
       expect(response.code).to eq('200')
     end
@@ -93,14 +93,14 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe '#review' do
+  describe '#approve' do
     let(:story) { build(:story) }
-    it 'marks story as reviewed' do
+    it 'marks story as approveed' do
       allow(Story).to receive(:find).and_return(story)
-      allow_any_instance_of(Story).to receive(:review!)
+      allow_any_instance_of(Story).to receive(:approve!)
 
-      expect(story).to receive(:review!)
-      post :review, params: { id: 2 }
+      expect(story).to receive(:approve!)
+      post :approve, params: { id: 2 }
 
       expect(response.code).to eq('200')
       expect(JSON.parse(response.body)['success']).to eq(true)

@@ -20,8 +20,8 @@ class StoriesController < ApplicationController
     render json: Story.to_review
   end
 
-  def reviewed
-    render json: Story.reviewed
+  def approved
+    render json: Story.approved
   end
 
   def reported
@@ -38,9 +38,9 @@ class StoriesController < ApplicationController
     render json: response
   end
 
-  def review
+  def approve
     story = Story.find(params[:id])
-    story.review!
+    story.approve!
     response = {
       success: true,
       error: ''
