@@ -262,7 +262,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
-  puma (~> 4.1)
+  puma (~> 4.3.5)
   rails (~> 6.0.3, >= 6.0.3.3)
   react-rails
   rspec-rails (~> 4.0)

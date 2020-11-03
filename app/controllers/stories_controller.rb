@@ -16,9 +16,31 @@ class StoriesController < ApplicationController
     render json: random_story
   end
 
+  def to_review
+    render json: Story.to_review
+  end
+
+  def reviewed
+    render json: Story.reviewed
+  end
+
+  def reported
+    render json: Story.reported
+  end
+
   def report
     story = Story.find(params[:id])
     story.report!
+    response = {
+      success: true,
+      error: ''
+    }
+    render json: response
+  end
+
+  def review
+    story = Story.find(params[:id])
+    story.review!
     response = {
       success: true,
       error: ''

@@ -14,8 +14,9 @@ class Story < ApplicationRecord
 
   validates :story, presence: true
 
+  scope :to_review, -> { where(reported: false, reviewed: false) }
+  scope :reviewed, -> { where(reported: false, reviewed: true) }
   scope :reported, -> { where(reported: true) }
-  scope :to_review, -> { where(reviewed: false) }
 
   def review!
     self.reviewed = true

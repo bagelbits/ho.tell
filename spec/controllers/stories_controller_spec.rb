@@ -48,6 +48,36 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
+  describe '#to_review' do
+    it 'calls Story.to_review' do
+      allow(Story).to  receive(:to_review).and_return({})
+      expect(Story).to receive(:to_review)
+      get :to_review
+
+      expect(response.code).to eq('200')
+    end
+  end
+
+  describe '#reviewed' do
+    it 'calls Story.reviewed' do
+      allow(Story).to  receive(:reviewed).and_return({})
+      expect(Story).to receive(:reviewed)
+      get :reviewed
+
+      expect(response.code).to eq('200')
+    end
+  end
+
+  describe '#reported' do
+    it 'calls Story.reported' do
+      allow(Story).to  receive(:reported).and_return({})
+      expect(Story).to receive(:reported)
+      get :reported
+
+      expect(response.code).to eq('200')
+    end
+  end
+
   describe '#report' do
     let(:story) { build(:story) }
     it 'marks story as reported' do
@@ -56,6 +86,21 @@ RSpec.describe StoriesController, type: :controller do
 
       expect(story).to receive(:report!)
       post :report, params: { id: 2 }
+
+      expect(response.code).to eq('200')
+      expect(JSON.parse(response.body)['success']).to eq(true)
+      expect(JSON.parse(response.body)['error']).to eq('')
+    end
+  end
+
+  describe '#review' do
+    let(:story) { build(:story) }
+    it 'marks story as reviewed' do
+      allow(Story).to receive(:find).and_return(story)
+      allow_any_instance_of(Story).to receive(:review!)
+
+      expect(story).to receive(:review!)
+      post :review, params: { id: 2 }
 
       expect(response.code).to eq('200')
       expect(JSON.parse(response.body)['success']).to eq(true)
