@@ -2,6 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+
+h1.title {
+  font-family: 'Yellowtail', cursive;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+video#ho-tell-video {
+  display: block;
+  margin: auto;
+}
+
+body {
+  font-family: 'Yellowtail', cursive;
+}
+
 p.story {
   white-space: pre-line;
+}
+
+div.credits {
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+}
+
+p.credit {
+  margin-bottom: 5px;
 }

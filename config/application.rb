@@ -18,6 +18,8 @@ module HoTell
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
+
     config.after_initialize do
       ActiveRecord::MigrationContext.new('db/migrate/', ActiveRecord::SchemaMigration).migrate
     end
