@@ -18,10 +18,29 @@ video#ho-tell-video {
 
 body {
   font-family: 'Yellowtail', cursive;
+  color: whitesmoke;
+  background-color: #000000;
 }
 
 p.story {
   white-space: pre-line;
+  width: 1100px;
+}
+
+div.story-prompt {
+  padding-bottom: 150px;
+}
+
+textarea.form-control {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.prompt-buttons {
+  text-align: center;
+  margin-right: -930px;
+  margin-top: 5px;
 }
 
 div.credits {

@@ -47,7 +47,7 @@ function StoryPrompt() {
   let renderedComponent;
   if (submitted === 'false') {
     renderedComponent = (
-      <div>
+      <div className="story-prompt">
         <TextareaAutosize
           className="form-control"
           ref={inputEl}

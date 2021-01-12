@@ -89,7 +89,7 @@ function RandomStory(props) {
     renderedComponent = <p>Something went terribly wrong.</p>;
   } else {
     renderedComponent = (
-      <div>
+      <div className="story-prompt">
         <p className="story">{result.story}</p>
 
         <div className="prompt-buttons">
