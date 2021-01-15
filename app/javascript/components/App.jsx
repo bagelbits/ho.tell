@@ -5,7 +5,18 @@ import HoTellVideo from '../static/HO.TELL.mp4';
 function Index() {
   return (
     <div>
-      <h1 className="title">Welcome to Ho.tell</h1>
+      <h1 className="title">Welcome to Ho | Tell</h1>
+      <h2 className="instructions">
+        We are a digital gossip exchange service for your needs to know and share your dirty,
+        wicked, strange, and wild confessions with. We don’t track your identity, our greatest hope
+        is that you are telling the truth.
+        <br />
+        <br />
+        Please keep submissions anonymous, and follow our community safety guidelines.
+        <br />
+        <br />
+        We are excited to share secrets with you.
+      </h2>
       <video controls autobuffer autoPlay muted loop id="ho-tell-video" src={HoTellVideo} />
       <StoryPrompt />
 
