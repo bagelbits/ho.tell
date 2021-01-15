@@ -1,6 +1,7 @@
 import React from 'react';
 import StoryPrompt from './app/StoryPrompt';
 import HoTellVideo from '../static/HO.TELL.mp4';
+import HoTellGif from '../static/HO.TELL.gif';
 
 function Index() {
   return (
@@ -18,6 +19,7 @@ function Index() {
         We are excited to share secrets with you.
       </h2>
       <video controls autobuffer autoPlay muted loop id="ho-tell-video" src={HoTellVideo} />
+      <img src={HoTellGif}></img>
       <StoryPrompt />
 
       <div className="credits">
