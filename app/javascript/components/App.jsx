@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 import StoryPrompt from './app/StoryPrompt';
-import HoTellVideo from '../static/HO.TELL.mp4';
+import HoTellGif from '../static/HO.TELL.gif';
 
 function Index() {
   return (
@@ -17,8 +18,12 @@ function Index() {
         <br />
         We are excited to share secrets with you.
       </h2>
-      <video controls autobuffer autoPlay muted loop id="ho-tell-video" src={HoTellVideo} />
+      <img src={HoTellGif} alt="" />
       <StoryPrompt />
+      <div className="audio-player">
+        <p>Feel free to listen to Radio KTSK while you write!</p>
+        <ReactAudioPlayer src="https://kstk.rocks:8443/kstk" autoPlay controls />
+      </div>
 
       <div className="credits">
         <h1 className="credit-title">Credits</h1>
