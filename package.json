@@ -1,7 +1,7 @@
 {
   "name": "ho_tell",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "private": true,
   "dependencies": {
